@@ -1,5 +1,3 @@
-Server.js
-
 const express = require("express");
 const mysql = require("mysql2");
 const cors = require("cors");
@@ -10,19 +8,22 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static(__dirname));
 
-// UNIQUE DB
+// MySQL (no password)
 const db = mysql.createConnection({
-  host: "localhost",
+  host: "127.0.0.1",
+  port: 3307,
   user: "root",
-  password: "your_actual_password",
+  password: "",   // no password
   database: "laasya_portfolio"
+  
 });
 
 db.connect(err => {
-  if (err) console.log(err);
+  if (err) console.log("DB Error:", err);
   else console.log("MySQL Connected");
 });
 
+// Store data
 app.post("/contact", (req, res) => {
   const { name, email, message } = req.body;
 
