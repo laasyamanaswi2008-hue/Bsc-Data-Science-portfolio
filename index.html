@@ -1,79 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>S. Laasya Manaswi | Portfolio</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
-
-<link rel="stylesheet" href="style.css">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        input, textarea {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
-
 <body>
+    <h1>Contact Me</h1>
+    <form id="contactForm">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+        <button type="submit">Send Message</button>
+    </form>
 
-<nav>
-<h2>Portfolio</h2>
-<ul>
-<li><a href="#">Home</a></li>
-<li><a href="#about">About</a></li>
-<li><a href="#skills">Skills</a></li>
-<li><a href="#certificates">Certificates</a></li>
-<li><a href="#contact">Contact</a></li>
-</ul>
-</nav>
+    <script>
+        document.getElementById("contactForm").addEventListener("submit", function(e){
+            e.preventDefault();
+            
+            const name = document.querySelector("input[name='name']").value;
+            const email = document.querySelector("input[name='email']").value;
+            const message = document.querySelector("textarea[name='message']").value;
 
-<div class="hero">
-<h1>S. LAASYA MANASWI</h1>
-<div id="typing"></div>
-</div>
-
-<section id="about">
-<h2>About Me</h2>
-<p class="about">
-I am S. Laasya Manaswi (25DTSA51). I am currently in my 2nd semester BSc Data Science student in Kristu Jayanti University. I am passionate about learning technology, data science, and improving my analytical and technical skills.
-</p>
-</section>
-
-<section id="skills">
-<h2>Skills</h2>
-<div class="skills">
-<div class="skill">🌐 JavaScript / HTML / CSS</div>
-<div class="skill">⚙️ Node.js / Express</div>
-<div class="skill">🗄️ MySQL / Databases</div>
-<div class="skill">📊 Data Analysis</div>
-</div>
-</section>
-
-<section id="certificates">
-<h2>Certificates</h2>
-<div class="certificates">
-<div class="cert"><h3>Front End Development</h3></div>
-<div class="cert"><h3>Digital Engineering</h3></div>
-</div>
-</section>
-
-<section id="contact">
-<h2>Contact Me</h2>
-
-<form id="contactForm">
-
-<input type="text" name="name" placeholder="Your Name" required>
-<input type="email" name="email" placeholder="Your Email" required>
-<textarea name="message" placeholder="Your Message" required></textarea>
-
-<button type="submit">Send</button>
-
-</form>
-
-</section>
-
-<footer>
-<p>© 2026 S. Laasya Manaswi</p>
-</footer>
-
+            fetch("http://localhost:5000/contact", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ name, email, message })
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert("Message sent successfully!");
+                document.getElementById("contactForm").reset();
+            })
+            .catch(error => console.error("Error:", error));
+        });
+    </script>
 </body>
 </html>
