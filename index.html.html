@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>S. Laasya Manaswi | Portfolio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+scroll-behavior:smooth;
+}
+
+body{
+background:#fdf2f8;
+color:#6b21a8;
+}
+
+nav{
+display:flex;
+justify-content:space-between;
+padding:20px 8%;
+background:#fbcfe8;
+position:sticky;
+top:0;
+}
+
+nav h2{
+color:#6b21a8;
+}
+
+nav ul{
+display:flex;
+list-style:none;
+}
+
+nav li{
+margin-left:20px;
+}
+
+nav a{
+text-decoration:none;
+color:#6b21a8;
+}
+
+nav a:hover{
+color:#db2777;
+}
+
+.hero{
+text-align:center;
+padding:80px 20px;
+}
+
+.hero h1{
+font-size:42px;
+color:#db2777;
+}
+
+section{
+padding:60px 8%;
+}
+
+h2{
+text-align:center;
+margin-bottom:30px;
+color:#db2777;
+}
+
+.about{
+max-width:800px;
+margin:auto;
+text-align:center;
+line-height:1.8;
+}
+
+.skills{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+}
+
+.skill{
+background:#fbcfe8;
+padding:20px;
+border-radius:10px;
+}
+
+.certificates{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+}
+
+.cert{
+background:#fbcfe8;
+padding:20px;
+border-radius:10px;
+}
+
+form{
+display:flex;
+flex-direction:column;
+align-items:center;
+}
+
+input,textarea{
+width:100%;
+max-width:500px;
+padding:10px;
+margin-bottom:15px;
+border-radius:5px;
+border:1px solid #db2777;
+}
+
+button{
+padding:10px 20px;
+border:none;
+background:#db2777;
+color:white;
+cursor:pointer;
+border-radius:5px;
+}
+
+footer{
+text-align:center;
+padding:20px;
+background:#fbcfe8;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<nav>
+<h2>Portfolio</h2>
+<ul>
+<li><a href="#">Home</a></li>
+<li><a href="#about">About</a></li>
+<li><a href="#skills">Skills</a></li>
+<li><a href="#certificates">Certificates</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+</nav>
+
+<div class="hero">
+<h1>S. LAASYA MANASWI</h1>
+<div id="typing"></div>
+</div>
+
+<section id="about">
+<h2>About Me</h2>
+<p class="about">
+I am S. Laasya Manaswi (25DTSA51). I am currently in my 2nd semester BSc Data Science student in Kristu Jayanti University.
+</p>
+</section>
+
+<section id="skills">
+<h2>Skills</h2>
+<div class="skills">
+<div class="skill">JavaScript / HTML / CSS</div>
+<div class="skill">Node.js / Express</div>
+<div class="skill">MySQL</div>
+<div class="skill">Data Analysis</div>
+</div>
+</section>
+
+<section id="certificates">
+<h2>Certificates</h2>
+<div class="certificates">
+<div class="cert">Infosys - Web Development</div>
+<div class="cert">NASSCOM - Digital Engineering</div>
+<div class="cert">Celonis - Process Mining</div>
+</div>
+</section>
+
+<section id="contact">
+<h2>Contact Me</h2>
+<form action="https://formspree.io/f/xvzblejd" method="POST">
+<input type="text" name="name" placeholder="Your Name" required>
+<input type="email" name="email" placeholder="Your Email" required>
+<textarea name="message" placeholder="Your Message" required></textarea>
+<button type="submit">Send</button>
+</form>
+</section>
+
+<footer>
+<p>© 2026 S. Laasya Manaswi</p>
+</footer>
+
+<script>
+const text = ["BSc Data Science Student", "Tech Enthusiast", "Future Data Scientist"];
+let i=0, j=0, current="", isDeleting=false;
+
+function type(){
+current = text[i];
+
+if(!isDeleting){
+document.getElementById("typing").innerHTML = current.substring(0,j++);
+if(j>current.length){
+isDeleting=true;
+setTimeout(type,1000);
+return;
+}
+}else{
+document.getElementById("typing").innerHTML = current.substring(0,j--);
+if(j<0){
+isDeleting=false;
+i=(i+1)%text.length;
+}
+}
+
+setTimeout(type,100);
+}
+
+type();
+</script>
+
+</body>
+</html>
